@@ -5,7 +5,7 @@ A clean and responsive personal portfolio built with HTML, CSS, and JavaScript. 
 ## Live Demo
 
 [View Website](jovial-bunny-5b256b)  
-*(Update with your actual domain once deployed)*
+
 
 ## Features
 
