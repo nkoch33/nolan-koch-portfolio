@@ -33,24 +33,24 @@ def main():
     
     # Create server
     with socketserver.TCPServer(("", PORT), CustomHTTPRequestHandler) as httpd:
-        print(f"🚀 Portfolio server started!")
-        print(f"📁 Serving files from: {DIRECTORY}")
-        print(f"🌐 Open your browser and go to: http://localhost:{PORT}")
-        print(f"⏹️  Press Ctrl+C to stop the server")
+        print(f"🟢 Portfolio server started!")
+        print(f" Serving files from: {DIRECTORY}")
+        print(f" Open your browser and go to: http://localhost:{PORT}")
+        print(f"  Press Ctrl+C to stop the server")
         print("-" * 50)
         
         # Try to open the website automatically
         try:
             webbrowser.open(f'http://localhost:{PORT}')
-            print("✅ Browser opened automatically!")
+            print(" Browser opened automatically!")
         except:
-            print("⚠️  Could not open browser automatically. Please open it manually.")
+            print("  Could not open browser automatically. Please open it manually.")
         
         # Start serving
         try:
             httpd.serve_forever()
         except KeyboardInterrupt:
-            print("\n🛑 Server stopped by user.")
+            print("\n🔴 Server stopped by user.")
             httpd.shutdown()
 
 if __name__ == "__main__":
