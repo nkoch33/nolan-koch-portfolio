@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self';">
+    <title>Nolan Koch - Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" crossorigin="anonymous">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #000000;
+            --bg-secondary: #111111;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --accent: #ffffff;
+            --border: #444444;
+            --shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 4px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: var(--bg-primary);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+        }
+
+        .hero-greeting {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            position: relative;
+        }
+
+        .hero-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+            max-width: 500px;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            max-width: 600px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 0;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 2px solid transparent;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-color: var(--accent);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border-color: var(--text-secondary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            border-color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .code-block {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            position: relative;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .code-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: var(--border);
+            border-radius: 8px 8px 0 0;
+        }
+
+        .code-line {
+            margin-bottom: 0.5rem;
+        }
+
+        .code-keyword {
+            color: var(--accent);
+        }
+
+        .code-string {
+            color: #ffffff;
+        }
+
+        .code-comment {
+            color: var(--text-secondary);
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 8rem 0;
+            background: var(--bg-secondary);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .project-categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 0.8rem 1.5rem;
+            border: 2px solid var(--border);
+            border-radius: 0;
+            background: transparent;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .category-btn:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .category-btn.active {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-color: var(--accent);
+        }
+
+        .project-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow);
+        }
+
+        .project-image {
+            width: 100px;
+            height: 100px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--bg-primary);
+            font-size: 2.5rem;
+        }
+
+        .project-content {
+            margin-bottom: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .project-description {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .project-tech {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .tech-tag {
+            background: var(--border);
+            color: var(--text-primary);
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .project-link {
+            background: var(--accent);
+            color: var(--bg-primary);
+            padding: 0.7rem 1.5rem;
+            border-radius: 0;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 2px solid transparent;
+        }
+
+        .project-link:hover {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .upload-section {
+            margin-top: 4rem;
+            padding-top: 4rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .upload-section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            text-align: center;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .upload-area {
+            background: var(--bg-primary);
+            border: 2px dashed var(--border);
+            border-radius: 8px;
+            padding: 4rem 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .upload-area:hover {
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .upload-area.dragover {
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.05);
+            transform: scale(1.02);
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .upload-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .upload-hint {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .upload-btn {
+            background: var(--accent);
+            color: var(--bg-primary);
+            padding: 1rem 2rem;
+            border-radius: 0;
+            border: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .upload-btn:hover {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-item {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow);
+        }
+
+        .project-preview {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 3rem;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .project-size {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .project-actions {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-item:hover .project-actions {
+            opacity: 1;
+        }
+
+        .action-btn {
+            background: rgba(0, 0, 0, 0.8);
+            color: var(--text-primary);
+            border: none;
+            border-radius: 4px;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn:hover {
+            background: var(--accent);
+            color: var(--bg-primary);
+            transform: scale(1.1);
+        }
+
+        /* About Section */
+        .about {
+            padding: 8rem 0;
+            background: var(--bg-primary);
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 8rem 0;
+            background: var(--bg-secondary);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .contact-item {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .contact-item h3 {
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-family: 'Space Mono', monospace;
+        }
+
+        .contact-item p {
+            color: var(--text-secondary);
+        }
+
+        .contact-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--accent);
+        }
+
+        .contact-item i {
+            color: var(--accent);
+            margin-right: 0.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .code-block {
+                max-width: 100%;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .project-showcase {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card {
+                flex-direction: row;
+                align-items: center;
+                text-align: left;
+                padding: 1.5rem;
+            }
+
+            .project-image {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 0;
+                margin-right: 1.5rem;
+            }
+
+            .project-content {
+                margin-bottom: 0;
+            }
+
+            .project-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .project-link {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Toast Notifications */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 4px;
+            color: var(--bg-primary);
+            font-weight: 600;
+            z-index: 10000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .toast.success {
+            background: var(--accent);
+        }
+
+        .toast.error {
+            background: #333333;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        /* Custom Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">
+                NK
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-greeting">Hello, I'm</div>
+                <h1 class="hero-title">Nolan Koch</h1>
+                <h2 class="hero-subtitle">CS & Cybersecurity Student | Software Developer | AI Researcher (Algoverse) | Slippery Rock University</h2>
+                <p class="hero-description">
+                    I’m passionate about building innovative solutions that make a real impact. My interests span machine learning, LLMs, cybersecurity, and software development.                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        View Projects
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="code-block">
+                    <div class="code-line"><span class="code-keyword">const</span> <span class="code-string">developer</span> = {</div>
+                    <div class="code-line">&nbsp;&nbsp;<span class="code-string">name</span>: <span class="code-string">'Nolan Koch'</span>,</div>
+                    <div class="code-line">&nbsp;&nbsp;<span class="code-string">role</span>: <span class="code-string">'Developer'</span>,</div>
+                    <div class="code-line">&nbsp;&nbsp;<span class="code-string">passion</span>: <span class="code-string">'Innovation'</span>,</div>
+                    <div class="code-line">&nbsp;&nbsp;<span class="code-keyword">skills</span>: [<span class="code-string">'Python'</span>, <span class="code-string">'C++'</span>, <span class="code-string">'Java'</span>],</div>
+                    <div class="code-line">&nbsp;&nbsp;<span class="code-comment">// Always learning, always building</span></div>
+                    <div class="code-line">};</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Projects</h2>
+                <p class="section-subtitle">
+                    A showcase of my coding and AI projects
+                </p>
+            </div>
+            
+            <!-- Project Categories -->
+            <div class="project-categories">
+                <button class="category-btn active" data-category="all">All Projects</button>
+                <button class="category-btn" data-category="coding">Coding Projects</button>
+                <button class="category-btn" data-category="ai">AI Projects</button>
+            </div>
+
+            <!-- Project Showcase -->
+            <div class="project-showcase">
+                <!-- Coding Projects -->
+                <div class="project-card" data-category="coding">
+                    <div class="project-image">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Portfolio Website</h3>
+                        <p class="project-description">A modern, responsive portfolio built with HTML, CSS, and JavaScript featuring smooth animations and interactive elements.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://nkoch33.github.io/portfolio" class="project-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/nkoch33/portfolio" class="project-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-github"></i> Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="coding">
+                    <div class="project-image">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Mobile App Development</h3>
+                        <p class="project-description">Cross-platform mobile application with real-time data synchronization and offline capabilities.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Redux</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-github"></i> Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="coding">
+                    <div class="project-image">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Backend API System</h3>
+                        <p class="project-description">RESTful API with authentication, rate limiting, and comprehensive documentation using modern backend technologies.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Express</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-github"></i> Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Projects -->
+                <div class="project-card" data-category="ai">
+                    <div class="project-image">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Machine Learning Model</h3>
+                        <p class="project-description">Deep learning model for image classification with 95% accuracy using convolutional neural networks.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">OpenCV</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-github"></i> Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="ai">
+                    <div class="project-image">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">AI Chatbot</h3>
+                        <p class="project-description">Intelligent chatbot powered by natural language processing for customer service automation.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">NLTK</span>
+                            <span class="tech-tag">OpenAI API</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-github"></i> Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="ai">
+                    <div class="project-image">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Predictive Analytics</h3>
+                        <p class="project-description">Time series forecasting model for financial data analysis with interactive visualizations.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                            <span class="tech-tag">Plotly</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-github"></i> Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upload Section -->
+            <div class="upload-section">
+                <h3 class="upload-section-title">Add Your Own Projects</h3>
+                <div class="upload-area" id="uploadArea">
+                    <input type="file" id="fileInput" class="file-input" accept="image/*" multiple>
+                    <div class="upload-icon">
+                        <i class="fas fa-upload"></i>
+                    </div>
+                    <div class="upload-text">Upload Your Projects</div>
+                    <div class="upload-hint">
+                        Drag and drop your project images here or click to browse
+                    </div>
+                    <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                        Choose Files
+                    </button>
+                </div>
+
+                <div class="gallery" id="projectGallery">
+                    <!-- Projects will be dynamically added here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">
+                    Outside of school, and work I enjoy mountain biking, hiking, and playing video games.
+                </p>
+            </div>
+            
+            <div class="about-content">
+                <p class="about-text">
+                    I'm a dedicated developer with expertise in modern web technologies. 
+                    I love building applications that solve real-world problems and create 
+                    meaningful user experiences.
+                </p>
+                <p class="about-text">
+                    With a strong foundation in both frontend and backend development, 
+                    I enjoy working across the full stack and learning new technologies 
+                    to stay current with industry best practices.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">
+                    Let's work together to build a better future!
+                </p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <h3><i class="fas fa-envelope"></i>Email</h3>
+                    <p><a href="mailto:kochnolan376@gmail.com" class="contact-link" rel="noopener noreferrer">kochnolan376@gmail.com</a></p>
+                </div>
+                <div class="contact-item">
+                    <h3><i class="fab fa-linkedin"></i>LinkedIn</h3>
+                    <p><a href="https://www.linkedin.com/in/nolankoch" class="contact-link" target="_blank" rel="noopener noreferrer">www.linkedin.com/in/nolankoch</a></p>
+                </div>
+                <div class="contact-item">
+                    <h3><i class="fab fa-github"></i>GitHub</h3>
+                    <p><a href="https://github.com/nkoch33" class="contact-link" target="_blank" rel="noopener noreferrer">https://github.com/nkoch33</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Project Upload Functionality
+        class ProjectUploader {
+            constructor() {
+                this.uploadArea = document.getElementById('uploadArea');
+                this.fileInput = document.getElementById('fileInput');
+                this.gallery = document.getElementById('projectGallery');
+                this.projects = [];
+                
+                this.initializeEventListeners();
+            }
+
+            initializeEventListeners() {
+                // File input change
+                this.fileInput.addEventListener('change', (e) => {
+                    this.handleFiles(e.target.files);
+                });
+
+                // Drag and drop
+                this.uploadArea.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    this.uploadArea.classList.add('dragover');
+                });
+
+                this.uploadArea.addEventListener('dragleave', () => {
+                    this.uploadArea.classList.remove('dragover');
+                });
+
+                this.uploadArea.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    this.uploadArea.classList.remove('dragover');
+                    this.handleFiles(e.dataTransfer.files);
+                });
+
+                // Click to upload
+                this.uploadArea.addEventListener('click', () => {
+                    this.fileInput.click();
+                });
+            }
+
+            handleFiles(files) {
+                Array.from(files).forEach(file => {
+                    if (file.type.startsWith('image/')) {
+                        this.addProject(file);
+                    }
+                });
+            }
+
+            addProject(file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const project = {
+                        id: Date.now() + Math.random(),
+                        name: file.name,
+                        size: this.formatFileSize(file.size),
+                        src: e.target.result
+                    };
+
+                    this.projects.push(project);
+                    this.displayProject(project);
+                    this.showToast('Project uploaded successfully!', 'success');
+                };
+                reader.readAsDataURL(file);
+            }
+
+            displayProject(project) {
+                const projectItem = document.createElement('div');
+                projectItem.className = 'project-item fade-in';
+                projectItem.innerHTML = `
+                    <img src="${project.src}" alt="${project.name}" class="project-preview">
+                    <div class="project-info">
+                        <div class="project-name">${project.name}</div>
+                        <div class="project-size">${project.size}</div>
+                    </div>
+                    <div class="project-actions">
+                        <button class="action-btn" onclick="projectUploader.viewProject('${project.src}')" title="View">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="action-btn" onclick="projectUploader.deleteProject(${project.id})" title="Delete">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                this.gallery.appendChild(projectItem);
+            }
+
+            deleteProject(id) {
+                this.projects = this.projects.filter(project => project.id !== id);
+                this.updateGallery();
+                this.showToast('Project deleted successfully!', 'success');
+            }
+
+            updateGallery() {
+                this.gallery.innerHTML = '';
+                this.projects.forEach(project => this.displayProject(project));
+            }
+
+            viewProject(src) {
+                const modal = document.createElement('div');
+                modal.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.95);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 10000;
+                    cursor: pointer;
+                `;
+                modal.innerHTML = `
+                    <img src="${src}" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+                `;
+                modal.addEventListener('click', () => document.body.removeChild(modal));
+                document.body.appendChild(modal);
+            }
+
+            formatFileSize(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+
+            showToast(message, type) {
+                const toast = document.createElement('div');
+                toast.className = `toast ${type}`;
+                toast.textContent = message;
+                document.body.appendChild(toast);
+                
+                setTimeout(() => toast.classList.add('show'), 100);
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    setTimeout(() => document.body.removeChild(toast), 300);
+                }, 3000);
+            }
+        }
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(0, 0, 0, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
+            } else {
+                navbar.style.background = 'rgba(0, 0, 0, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // Initialize Project Uploader
+        const projectUploader = new ProjectUploader();
+
+        // Project Filtering
+        class ProjectFilter {
+            constructor() {
+                this.categoryButtons = document.querySelectorAll('.category-btn');
+                this.projectCards = document.querySelectorAll('.project-card');
+                this.initializeFiltering();
+            }
+
+            initializeFiltering() {
+                this.categoryButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const category = button.getAttribute('data-category');
+                        this.filterProjects(category);
+                        this.updateActiveButton(button);
+                    });
+                });
+            }
+
+            filterProjects(category) {
+                this.projectCards.forEach(card => {
+                    const cardCategory = card.getAttribute('data-category');
+                    
+                    if (category === 'all' || cardCategory === category) {
+                        card.style.display = 'flex';
+                        card.classList.add('fade-in');
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+            updateActiveButton(activeButton) {
+                this.categoryButtons.forEach(button => {
+                    button.classList.remove('active');
+                });
+                activeButton.classList.add('active');
+            }
+        }
+
+        // Initialize Project Filter
+        const projectFilter = new ProjectFilter();
+
+        // Typing Animation
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.textContent = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Initialize typing animation when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            const heroTitle = document.querySelector('.hero-title');
+            if (heroTitle) {
+                setTimeout(() => {
+                    typeWriter(heroTitle, 'Nolan Koch', 150);
+                }, 1000);
+            }
+        });
+
+        // Security: Prevent clickjacking
+        if (window.top !== window.self) {
+            window.top.location = window.self.location;
+        }
+
+        // Security: Disable right-click context menu
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+        });
+
+        // Security: Disable text selection (optional - remove if you want users to be able to select text)
+        document.addEventListener('selectstart', (e) => {
+            e.preventDefault();
+        });
+    </script>
+</body>
+</html> 
