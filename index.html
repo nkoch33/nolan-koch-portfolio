@@ -9,6 +9,7 @@
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self';">
     <title>Nolan Koch - Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-family='monospace' font-weight='bold' fill='white'>NK</text></svg>">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" crossorigin="anonymous">
     <style>
@@ -493,174 +494,7 @@
             border: 2px solid var(--accent);
         }
 
-        .upload-section {
-            margin-top: 4rem;
-            padding-top: 4rem;
-            border-top: 1px solid var(--border);
-        }
 
-        .upload-section-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 2rem;
-            text-align: center;
-            font-family: 'Space Mono', monospace;
-        }
-
-        .upload-area {
-            background: var(--bg-primary);
-            border: 2px dashed var(--border);
-            border-radius: 8px;
-            padding: 4rem 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            margin-bottom: 3rem;
-        }
-
-        .upload-area:hover {
-            border-color: var(--accent);
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        .upload-area.dragover {
-            border-color: var(--accent);
-            background: rgba(255, 255, 255, 0.05);
-            transform: scale(1.02);
-        }
-
-        .upload-icon {
-            font-size: 3rem;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-        }
-
-        .upload-text {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-            font-family: 'Space Mono', monospace;
-        }
-
-        .upload-hint {
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            font-size: 0.9rem;
-        }
-
-        .file-input {
-            display: none;
-        }
-
-        .upload-btn {
-            background: var(--accent);
-            color: var(--bg-primary);
-            padding: 1rem 2rem;
-            border-radius: 0;
-            border: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .upload-btn:hover {
-            background: transparent;
-            color: var(--accent);
-            border: 2px solid var(--accent);
-            transform: translateY(-2px);
-        }
-
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-item {
-            background: var(--bg-primary);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .project-item:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-            box-shadow: var(--shadow);
-        }
-
-        .project-preview {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            background: var(--bg-secondary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-            font-size: 3rem;
-        }
-
-        .project-info {
-            padding: 1.5rem;
-        }
-
-        .project-name {
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-            font-family: 'Space Mono', monospace;
-        }
-
-        .project-size {
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-        }
-
-        .project-actions {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            display: flex;
-            gap: 0.5rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .project-item:hover .project-actions {
-            opacity: 1;
-        }
-
-        .action-btn {
-            background: rgba(0, 0, 0, 0.8);
-            color: var(--text-primary);
-            border: none;
-            border-radius: 4px;
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .action-btn:hover {
-            background: var(--accent);
-            color: var(--bg-primary);
-            transform: scale(1.1);
-        }
 
         /* About Section */
         .about {
@@ -791,32 +625,7 @@
             }
         }
 
-        /* Toast Notifications */
-        .toast {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 1rem 1.5rem;
-            border-radius: 4px;
-            color: var(--bg-primary);
-            font-weight: 600;
-            z-index: 10000;
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
-            font-family: 'Space Mono', monospace;
-        }
 
-        .toast.success {
-            background: var(--accent);
-        }
-
-        .toast.error {
-            background: #333333;
-        }
-
-        .toast.show {
-            transform: translateX(0);
-        }
 
         /* Custom Animations */
         @keyframes fadeInUp {
@@ -902,7 +711,7 @@
 
             <!-- Project Showcase -->
             <div class="project-showcase">
-                <!-- Coding Projects -->
+                <!-- Portfolio Website -->
                 <div class="project-card" data-category="coding">
                     <div class="project-image">
                         <i class="fas fa-code"></i>
@@ -916,126 +725,102 @@
                             <span class="tech-tag">JavaScript</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://nkoch33.github.io/portfolio" class="project-link" target="_blank" rel="noopener noreferrer">
+                            <a href="https://nkoch33.github.io/nolan-koch-portfolio" class="project-link" target="_blank" rel="noopener noreferrer">
                                 <i class="fas fa-external-link-alt"></i> Live Demo
                             </a>
-                            <a href="https://github.com/nkoch33/portfolio" class="project-link" target="_blank" rel="noopener noreferrer">
+                            <a href="https://github.com/nkoch33/nolan-koch-portfolio" class="project-link" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-github"></i> Source Code
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <div class="project-card" data-category="coding">
-                    <div class="project-image">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Mobile App Development</h3>
-                        <p class="project-description">Cross-platform mobile application with real-time data synchronization and offline capabilities.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">React Native</span>
-                            <span class="tech-tag">Firebase</span>
-                            <span class="tech-tag">Redux</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                            <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-github"></i> Source Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card" data-category="coding">
-                    <div class="project-image">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Backend API System</h3>
-                        <p class="project-description">RESTful API with authentication, rate limiting, and comprehensive documentation using modern backend technologies.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Node.js</span>
-                            <span class="tech-tag">Express</span>
-                            <span class="tech-tag">MongoDB</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                            <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-github"></i> Source Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- AI Projects -->
+                <!-- Train of Thought LLM Project -->
                 <div class="project-card" data-category="ai">
                     <div class="project-image">
                         <i class="fas fa-brain"></i>
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title">Machine Learning Model</h3>
-                        <p class="project-description">Deep learning model for image classification with 95% accuracy using convolutional neural networks.</p>
+                        <h3 class="project-title">Train of Thought: Multi-Agent LLM System</h3>
+                        <p class="project-description">A sophisticated multi-agent LLM system implementing advanced chain-of-thought reasoning with recursive subproblem validation, backtracking, prompt decomposition, and safety checks. Features Google Gemini integration.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
-                            <span class="tech-tag">TensorFlow</span>
-                            <span class="tech-tag">OpenCV</span>
+                            <span class="tech-tag">LLM</span>
+                            <span class="tech-tag">Multi-Agent</span>
+                            <span class="tech-tag">Chain-of-Thought</span>
+                            <span class="tech-tag">Google Gemini</span>
                         </div>
                         <div class="project-links">
-                            <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                            <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
+                            <a href="https://github.com/nkoch33/Train_of_Thought_LLM_Project" class="project-link" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-github"></i> Source Code
                             </a>
                         </div>
                     </div>
                 </div>
 
+                <!-- Black Jack RL Project -->
                 <div class="project-card" data-category="ai">
                     <div class="project-image">
                         <i class="fas fa-robot"></i>
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title">AI Chatbot</h3>
-                        <p class="project-description">Intelligent chatbot powered by natural language processing for customer service automation.</p>
+                        <h3 class="project-title">Black Jack Reinforcement Learning</h3>
+                        <p class="project-description">An interactive reinforcement learning system that trains AI agents to play Blackjack using Q-learning and Monte Carlo methods. Features complete game environment, training tools, visualization, and performance analysis.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
-                            <span class="tech-tag">NLTK</span>
-                            <span class="tech-tag">OpenAI API</span>
+                            <span class="tech-tag">Reinforcement Learning</span>
+                            <span class="tech-tag">Q-Learning</span>
+                            <span class="tech-tag">Monte Carlo</span>
+                            <span class="tech-tag">Gym Environment</span>
                         </div>
                         <div class="project-links">
-                            <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                            <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
+                            <a href="https://github.com/nkoch33/Black_Jack_RL_Project" class="project-link" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-github"></i> Source Code
                             </a>
                         </div>
                     </div>
                 </div>
 
+                <!-- Web Application Firewall -->
                 <div class="project-card" data-category="ai">
                     <div class="project-image">
-                        <i class="fas fa-chart-line"></i>
+                        <i class="fas fa-shield-alt"></i>
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title">Predictive Analytics</h3>
-                        <p class="project-description">Time series forecasting model for financial data analysis with interactive visualizations.</p>
+                        <h3 class="project-title">Web Application Firewall (WAF)</h3>
+                        <p class="project-description">A comprehensive web application firewall built with Python and Flask that protects web applications from common attacks using both rule-based and machine learning approaches. Features SQL injection detection, XSS protection, rate limiting, and real-time monitoring.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Scikit-learn</span>
-                            <span class="tech-tag">Plotly</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">Machine Learning</span>
+                            <span class="tech-tag">Cybersecurity</span>
+                            <span class="tech-tag">Docker</span>
                         </div>
                         <div class="project-links">
-                            <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            <a href="https://github.com/nkoch33/web_app_firewall" class="project-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-github"></i> Source Code
                             </a>
-                            <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Car Detection Project -->
+                <div class="project-card" data-category="ai">
+                    <div class="project-image">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Car Detection System</h3>
+                        <p class="project-description">A comprehensive computer vision system using YOLOv8 for real-time car and object detection in images and videos. Features web interface, analytics, and custom model training capabilities.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">YOLOv8</span>
+                            <span class="tech-tag">OpenCV</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">Computer Vision</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/nkoch33/car-detection-project" class="project-link" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-github"></i> Source Code
                             </a>
                         </div>
@@ -1043,27 +828,7 @@
                 </div>
             </div>
 
-            <!-- Upload Section -->
-            <div class="upload-section">
-                <h3 class="upload-section-title">Add Your Own Projects</h3>
-                <div class="upload-area" id="uploadArea">
-                    <input type="file" id="fileInput" class="file-input" accept="image/*" multiple>
-                    <div class="upload-icon">
-                        <i class="fas fa-upload"></i>
-                    </div>
-                    <div class="upload-text">Upload Your Projects</div>
-                    <div class="upload-hint">
-                        Drag and drop your project images here or click to browse
-                    </div>
-                    <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
-                        Choose Files
-                    </button>
-                </div>
 
-                <div class="gallery" id="projectGallery">
-                    <!-- Projects will be dynamically added here -->
-                </div>
-            </div>
         </div>
     </section>
 
@@ -1120,146 +885,6 @@
     </section>
 
     <script>
-        // Project Upload Functionality
-        class ProjectUploader {
-            constructor() {
-                this.uploadArea = document.getElementById('uploadArea');
-                this.fileInput = document.getElementById('fileInput');
-                this.gallery = document.getElementById('projectGallery');
-                this.projects = [];
-                
-                this.initializeEventListeners();
-            }
-
-            initializeEventListeners() {
-                // File input change
-                this.fileInput.addEventListener('change', (e) => {
-                    this.handleFiles(e.target.files);
-                });
-
-                // Drag and drop
-                this.uploadArea.addEventListener('dragover', (e) => {
-                    e.preventDefault();
-                    this.uploadArea.classList.add('dragover');
-                });
-
-                this.uploadArea.addEventListener('dragleave', () => {
-                    this.uploadArea.classList.remove('dragover');
-                });
-
-                this.uploadArea.addEventListener('drop', (e) => {
-                    e.preventDefault();
-                    this.uploadArea.classList.remove('dragover');
-                    this.handleFiles(e.dataTransfer.files);
-                });
-
-                // Click to upload
-                this.uploadArea.addEventListener('click', () => {
-                    this.fileInput.click();
-                });
-            }
-
-            handleFiles(files) {
-                Array.from(files).forEach(file => {
-                    if (file.type.startsWith('image/')) {
-                        this.addProject(file);
-                    }
-                });
-            }
-
-            addProject(file) {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    const project = {
-                        id: Date.now() + Math.random(),
-                        name: file.name,
-                        size: this.formatFileSize(file.size),
-                        src: e.target.result
-                    };
-
-                    this.projects.push(project);
-                    this.displayProject(project);
-                    this.showToast('Project uploaded successfully!', 'success');
-                };
-                reader.readAsDataURL(file);
-            }
-
-            displayProject(project) {
-                const projectItem = document.createElement('div');
-                projectItem.className = 'project-item fade-in';
-                projectItem.innerHTML = `
-                    <img src="${project.src}" alt="${project.name}" class="project-preview">
-                    <div class="project-info">
-                        <div class="project-name">${project.name}</div>
-                        <div class="project-size">${project.size}</div>
-                    </div>
-                    <div class="project-actions">
-                        <button class="action-btn" onclick="projectUploader.viewProject('${project.src}')" title="View">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                        <button class="action-btn" onclick="projectUploader.deleteProject(${project.id})" title="Delete">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                `;
-                this.gallery.appendChild(projectItem);
-            }
-
-            deleteProject(id) {
-                this.projects = this.projects.filter(project => project.id !== id);
-                this.updateGallery();
-                this.showToast('Project deleted successfully!', 'success');
-            }
-
-            updateGallery() {
-                this.gallery.innerHTML = '';
-                this.projects.forEach(project => this.displayProject(project));
-            }
-
-            viewProject(src) {
-                const modal = document.createElement('div');
-                modal.style.cssText = `
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: rgba(0, 0, 0, 0.95);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    z-index: 10000;
-                    cursor: pointer;
-                `;
-                modal.innerHTML = `
-                    <img src="${src}" style="max-width: 90%; max-height: 90%; object-fit: contain;">
-                `;
-                modal.addEventListener('click', () => document.body.removeChild(modal));
-                document.body.appendChild(modal);
-            }
-
-            formatFileSize(bytes) {
-                if (bytes === 0) return '0 Bytes';
-                const k = 1024;
-                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-                const i = Math.floor(Math.log(bytes) / Math.log(k));
-                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-            }
-
-            showToast(message, type) {
-                const toast = document.createElement('div');
-                toast.className = `toast ${type}`;
-                toast.textContent = message;
-                document.body.appendChild(toast);
-                
-                setTimeout(() => toast.classList.add('show'), 100);
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                    setTimeout(() => document.body.removeChild(toast), 300);
-                }, 3000);
-            }
-        }
-
         // Smooth Scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1303,9 +928,6 @@
                 navbar.style.boxShadow = 'none';
             }
         });
-
-        // Initialize Project Uploader
-        const projectUploader = new ProjectUploader();
 
         // Project Filtering
         class ProjectFilter {
