@@ -4,7 +4,7 @@ A clean and responsive personal portfolio built with HTML, CSS, and JavaScript. 
 
 ## Live Demo
 
-[View Website](jovial-bunny-5b256b)  
+[View Website](https://nkoch33.github.io/nolan-koch-portfolio/)  
 
 
 ## Features
@@ -75,6 +75,7 @@ Acknowledgments
 Font Awesome for icons
 
 Google Fonts for typography
+
 
 
 
