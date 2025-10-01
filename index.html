@@ -1017,6 +1017,144 @@
             box-shadow: 0 8px 25px rgba(191, 161, 129, 0.4);
         }
 
+        /* Project Image Styles */
+        .project-image-container {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            position: relative;
+            cursor: pointer;
+            background: var(--bg-tertiary);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.4s ease;
+        }
+
+        .project-image-container:hover .project-image {
+            transform: scale(1.05);
+        }
+
+        .project-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 24, 40, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .project-image-container:hover .project-image-overlay {
+            opacity: 1;
+        }
+
+        .project-image-overlay i {
+            color: white;
+            font-size: 2rem;
+        }
+
+        /* Lightbox Modal */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+            animation: zoomIn 0.3s ease;
+        }
+
+        .lightbox-image {
+            width: 100%;
+            height: auto;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            background: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Dual Image Layout */
+        .project-dual-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-dual-images .project-image-container {
+            height: 150px;
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            .project-dual-images {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-dual-images .project-image-container {
+                height: 200px;
+            }
+        }
+
         /* Enhanced Contact Items */
         .contact-item {
             background: rgba(10, 24, 40, 0.8);
@@ -1517,6 +1655,23 @@
                         <div class="project-icon">
                             <i class="fas fa-shield-alt"></i>
                         </div>
+                        
+                        <!-- Dual Project Images -->
+                        <div class="project-dual-images">
+                            <div class="project-image-container" onclick="openLightbox('images/waf-screenshot1.png')">
+                                <img src="images/waf-screenshot1.png" alt="WAF Dashboard" class="project-image">
+                                <div class="project-image-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                </div>
+                            </div>
+                            <div class="project-image-container" onclick="openLightbox('images/waf-screenshot2.png')">
+                                <img src="images/waf-screenshot2.png" alt="WAF Attack Detection" class="project-image">
+                                <div class="project-image-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <h3 class="project-title">Web Application Firewall (WAF)</h3>
                         <p class="project-description">A comprehensive web application firewall built with Python and Flask that protects web applications from common attacks using both rule-based and machine learning approaches. Features SQL injection detection, XSS protection, rate limiting, and real-time monitoring.</p>
                         <div class="project-tech">
@@ -1542,6 +1697,15 @@
                         <div class="project-icon">
                             <i class="fas fa-car"></i>
                         </div>
+                        
+                        <!-- Project Image -->
+                        <div class="project-image-container" onclick="openLightbox('images/car-detection.png')">
+                            <img src="images/car-detection.png" alt="Car Detection System Demo" class="project-image">
+                            <div class="project-image-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                        
                         <h3 class="project-title">Car Detection System</h3>
                         <p class="project-description">A comprehensive computer vision system using YOLOv8 for real-time car and object detection in images and videos. Features web interface, analytics, and custom model training capabilities.</p>
                         <div class="project-tech">
@@ -1555,6 +1719,66 @@
                     <div class="project-footer">
                         <div class="project-links">
                             <a href="https://github.com/nkoch33/car-detection-project" class="project-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-github"></i> Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Inventory Demand Forecasting -->
+                <div class="project-card" data-category="ai">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="project-title">Inventory Demand Forecasting</h3>
+                        <p class="project-description">A comprehensive machine learning system for retail inventory demand forecasting using LSTM and Prophet models. Features time series analysis, feature engineering, GPU acceleration, and the ability to predict demand for 50k+ SKUs with stock optimization and promotion planning.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">LSTM</span>
+                            <span class="tech-tag">Prophet</span>
+                            <span class="tech-tag">Time Series</span>
+                            <span class="tech-tag">Machine Learning</span>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <div class="project-links">
+                            <a href="https://github.com/nkoch33/Inventory-Demand-Forecasting" class="project-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-github"></i> Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CUDA Parallel Matrix Multiplication -->
+                <div class="project-card" data-category="coding">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        
+                        <!-- Project Image -->
+                        <div class="project-image-container" onclick="openLightbox('images/cuda-matrix-diagram.png')">
+                            <img src="images/cuda-matrix-diagram.png" alt="Matrix Multiplication Diagram" class="project-image">
+                            <div class="project-image-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                        
+                        <h3 class="project-title">CUDA Parallel Matrix Multiplication</h3>
+                        <p class="project-description">High-performance CUDA implementation of matrix multiplication with shared memory tiling optimizations, achieving 18× speedup compared to NumPy. Features multiple kernel implementations, comprehensive benchmarking, and Nsight Compute profiling integration.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">CUDA</span>
+                            <span class="tech-tag">C++</span>
+                            <span class="tech-tag">CMake</span>
+                            <span class="tech-tag">GPU Computing</span>
+                            <span class="tech-tag">Parallel Processing</span>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <div class="project-links">
+                            <a href="https://github.com/nkoch33/CUDA-Parallel-Matrix-Multiplication" class="project-link" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-github"></i> Source Code
                             </a>
                         </div>
@@ -1616,7 +1840,44 @@
         </div>
     </section>
 
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox-modal">
+        <div class="lightbox-content">
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <img id="lightbox-img" class="lightbox-image" src="" alt="Project Image">
+        </div>
+    </div>
+
     <script>
+        // Lightbox Functions
+        function openLightbox(imageSrc) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = imageSrc;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close lightbox when clicking outside the image
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+
         // Fast Smooth Scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1908,4 +2169,5 @@
 </body>
 </html> 
 </html> 
+
 
